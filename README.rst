@@ -114,6 +114,12 @@ Run tests with:
 
     ./runtests.py
 
+Settings
+--------
+
+* ``OWM_LEGACY_ALLOWED_SUBNETS``: list of strings representing ip networks allowed to
+  configuration archives, defaults to ``['10.8.0.0/16', '127.0.0.1/32']``
+
 Contributing
 ------------
 
