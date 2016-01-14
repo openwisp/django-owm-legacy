@@ -3,7 +3,7 @@ from time import sleep
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-from django_netjsonconfig.models import Device
+from django_netjsonconfig.models import Config
 from owm_legacy.settings import ALLOWED_SUBNETS
 
 
@@ -11,8 +11,8 @@ class TestOwmLegacy(TestCase):
     """
     tests for owm_legacy
     """
-    def _create_device(self):
-        d = Device(name='test',
+    def _create_config(self):
+        d = Config(name='test',
                    backend='netjsonconfig.OpenWrt',
                    config={'general':{'hostname':'test'}},
                    key='00:11:22:33:44:55')
@@ -21,7 +21,7 @@ class TestOwmLegacy(TestCase):
         return d
 
     def test_get_config_md5(self):
-        d = self._create_device()
+        d = self._create_config()
         response = self.client.get(reverse('owm:get_config_md5', args=[d.key]))
         self.assertEqual(response['Content-Disposition'], 'attachment; filename=00:11:22:33:44:55')
         self.assertEqual(len(response.content), 32)
@@ -32,7 +32,7 @@ class TestOwmLegacy(TestCase):
         self.assertEqual(checksum1, checksum2)
 
     def test_get_config(self):
-        d = self._create_device()
+        d = self._create_config()
         response = self.client.get(reverse('owm:get_config', args=[d.key]))
         self.assertEqual(response['Content-Disposition'], 'attachment; filename=test.tar.gz')
 

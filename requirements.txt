@@ -1,1 +1,1 @@
-django-netjsonconfig>=0.1,<=0.2
+django-netjsonconfig>=0.2,<=0.3
