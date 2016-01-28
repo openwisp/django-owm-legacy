@@ -1,7 +1,7 @@
 Changelog
 =========
 
-Version 0.2.1 [unreleased]
+Version 0.2.1 [2016-01-21]
 --------------------------
 
 - `ebf950a <https://github.com/openwisp/django-owm-legacy/commit/ebf950a>`_:
