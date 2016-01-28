@@ -4,9 +4,12 @@ Changelog
 Version 0.2.1 [unreleased]
 --------------------------
 
-WIP
+- `ebf950a <https://github.com/openwisp/django-owm-legacy/commit/ebf950a>`_:
+updated requirements.txt
+- `61e6ddd <https://github.com/openwisp/django-owm-legacy/commit/61e6ddd>`_:
+fill last_ip and status fields when config is downloaded
 
-Version 0.2 [2015-01-14]
+Version 0.2 [2016-01-14]
 ------------------------
 
 - `#1 <https://github.com/openwisp/django-netjsonconfig/issues/1>`_:
