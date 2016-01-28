@@ -64,9 +64,29 @@ Add ``django_netjsonconfig``, ``sortedm2m`` and ``owm_legacy`` to ``INSTALLED_AP
         # other apps
         'django_netjsonconfig',
         'sortedm2m',
+        'reversion',
         'owm_legacy'
         # ...
     ]
+
+Your ``urls.py`` should look like the following:
+
+.. code-block:: python
+
+    from django.conf.urls import include, url
+    from django.contrib import admin
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    admin.autodiscover()
+
+
+    urlpatterns = [
+        url(r'^admin/', include(admin.site.urls)),
+        url(r'^', include('django_netjsonconfig.controller.urls', namespace='controller')),
+        url(r'^', include('owm_legacy.urls', namespace='owm')),
+    ]
+
+    urlpatterns += staticfiles_urlpatterns()
 
 Installing for development
 --------------------------
