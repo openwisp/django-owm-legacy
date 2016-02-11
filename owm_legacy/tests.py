@@ -30,6 +30,8 @@ class TestOwmLegacy(TestCase):
         response = self.client.get(reverse('owm:get_config_md5', args=[d.key]))
         checksum2 = response.content
         self.assertEqual(checksum1, checksum2)
+        d.refresh_from_db()
+        self.assertIsNotNone(d.last_ip)
 
     def test_get_config(self):
         c = self._create_config()
