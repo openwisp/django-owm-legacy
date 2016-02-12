@@ -1,6 +1,14 @@
 Changelog
 =========
 
+Version 0.2.2 [2016-02-12]
+--------------------------
+
+- `f66bec1 <https://github.com/openwisp/django-owm-legacy/commit/f66bec1>`_:
+  update ``last_ip`` on checksum if necessary
+- `4ae482e <https://github.com/openwisp/django-owm-legacy/commit/4ae482e>`_:
+  updated minimum ``django-netjsonconfig`` version to 0.2.3
+
 Version 0.2.1 [2016-01-28]
 --------------------------
 
