@@ -1,7 +1,7 @@
 from time import sleep
 
-from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.test import TestCase
 
 from django_netjsonconfig.models import Config
 from owm_legacy.settings import ALLOWED_SUBNETS

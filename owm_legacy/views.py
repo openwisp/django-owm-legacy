@@ -1,8 +1,7 @@
-import hashlib
-
 from django.shortcuts import get_object_or_404
+
 from django_netjsonconfig.models import Config
-from django_netjsonconfig.utils import send_file, send_config, update_last_ip
+from django_netjsonconfig.utils import send_config, send_file, update_last_ip
 
 from .utils import forbid_unallowed
 
