@@ -1,8 +1,11 @@
+import logging
 import ipaddress
 
 from django.core.exceptions import PermissionDenied
 
 from .settings import ALLOWED_SUBNETS
+
+logger = logging.getLogger(__name__)
 
 
 def ip_allowed(address_string):
@@ -24,4 +27,5 @@ def forbid_unallowed(request):
     raises ``PermissionDenied`` if remote address is not allowed
     """
     if not ip_allowed(request.META.get('REMOTE_ADDR')):
+        logger.warning('PermissionDenied', extra={'request': request, 'stack': True})
         raise PermissionDenied
