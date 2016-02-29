@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 0.2.3 [2016-02-29]
+--------------------------
+
+- `b162867 <https://github.com/openwisp/django-owm-legacy/commit/b162867>`_:
+  log denied requests with warning level
+
 Version 0.2.2 [2016-02-12]
 --------------------------
 
