@@ -151,7 +151,7 @@ checksums and download configuration archives.
 Contributing
 ------------
 
-1. Announce your intentions in the `issue tracker <https://github.com/openwisp/django-owm-legacy/issues>`__
+1. Announce your intentions in the `OpenWISP Mailing List <https://groups.google.com/d/forum/openwisp>`_
 2. Fork this repo and install it
 3. Follow `PEP8, Style Guide for Python Code`_
 4. Write code
