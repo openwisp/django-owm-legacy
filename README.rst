@@ -14,12 +14,10 @@ django-owm-legacy
 .. image:: https://badge.fury.io/py/django-owm-legacy.svg
    :target: http://badge.fury.io/py/django-owm-legacy
 
-.. image:: https://img.shields.io/pypi/dm/django-owm-legacy.svg
-   :target: https://pypi.python.org/pypi/django-owm-legacy
-
 ------------
 
-Legacy features of OpenWISP Manager reimplemented in django.
+Legacy features of OpenWISP Manager reimplemented in django for `OpenWISP2
+<https://github.com/openwisp/ansible-openwisp2>`_.
 
 Install stable version from pypi
 --------------------------------
@@ -162,3 +160,18 @@ Contributing
 9. Send pull request
 
 .. _PEP8, Style Guide for Python Code: http://www.python.org/dev/peps/pep-0008/
+
+Changelog
+---------
+
+See `CHANGES <https://github.com/openwisp/django-owm-legacy/blob/master/CHANGES.rst>`_.
+
+License
+-------
+
+See `LICENSE <https://github.com/openwisp/django-owm-legacy/blob/master/LICENSE>`_.
+
+Support
+-------
+
+Send questions to the `OpenWISP Mailing List <https://groups.google.com/d/forum/openwisp>`_.
