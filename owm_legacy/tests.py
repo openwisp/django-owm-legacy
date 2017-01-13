@@ -4,26 +4,20 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 from django_netjsonconfig.models import Config
+from django_netjsonconfig.tests import CreateConfigMixin
 from owm_legacy.settings import ALLOWED_SUBNETS
 
 
-class TestOwmLegacy(TestCase):
+class TestOwmLegacy(CreateConfigMixin, TestCase):
     """
     tests for owm_legacy
     """
-    def _create_config(self):
-        d = Config(name='test',
-                   backend='netjsonconfig.OpenWrt',
-                   config={'general':{'hostname':'test'}},
-                   key='00:11:22:33:44:55')
-        d.full_clean()
-        d.save()
-        return d
+    config_model = Config
 
     def test_get_config_md5(self):
         d = self._create_config()
         response = self.client.get(reverse('owm:get_config_md5', args=[d.key]))
-        self.assertEqual(response['Content-Disposition'], 'attachment; filename=00:11:22:33:44:55')
+        self.assertEqual(response['Content-Disposition'], 'attachment; filename={0}'.format(self.TEST_KEY))
         self.assertEqual(len(response.content), 32)
         checksum1 = response.content
         sleep(1)
