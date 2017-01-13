@@ -21,10 +21,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.admin',
+    'django_x509',
     'django_netjsonconfig',
     'sortedm2m',
-    'owm_legacy'
+    'owm_legacy',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE_CLASSES = [
