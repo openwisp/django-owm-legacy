@@ -15,32 +15,32 @@ class TestOwmLegacy(CreateConfigMixin, TestCase):
     config_model = Config
 
     def test_get_config_md5(self):
-        d = self._create_config()
-        response = self.client.get(reverse('owm:get_config_md5', args=[d.key]))
-        self.assertEqual(response['Content-Disposition'], 'attachment; filename={0}'.format(self.TEST_KEY))
+        c = self._create_config()
+        response = self.client.get(reverse('owm:get_config_md5', args=[c.mac_address]))
+        self.assertEqual(response['Content-Disposition'], 'attachment; filename={0}'.format(self.TEST_MAC_ADDRESS))
         self.assertEqual(len(response.content), 32)
         checksum1 = response.content
         sleep(1)
-        response = self.client.get(reverse('owm:get_config_md5', args=[d.key]))
+        response = self.client.get(reverse('owm:get_config_md5', args=[c.mac_address]))
         checksum2 = response.content
         self.assertEqual(checksum1, checksum2)
-        d.refresh_from_db()
-        self.assertIsNotNone(d.last_ip)
+        c.refresh_from_db()
+        self.assertIsNotNone(c.last_ip)
 
     def test_get_config(self):
         c = self._create_config()
-        response = self.client.get(reverse('owm:get_config', args=[c.key]))
+        response = self.client.get(reverse('owm:get_config', args=[c.mac_address]))
         self.assertEqual(response['Content-Disposition'], 'attachment; filename=test.tar.gz')
 
     def test_last_ip(self):
         c = self._create_config()
-        response = self.client.get(reverse('owm:get_config', args=[c.key]))
+        response = self.client.get(reverse('owm:get_config', args=[c.mac_address]))
         c.refresh_from_db()
         self.assertIsNotNone(c.last_ip)
 
     def test_status(self):
         c = self._create_config()
-        response = self.client.get(reverse('owm:get_config', args=[c.key]))
+        response = self.client.get(reverse('owm:get_config', args=[c.mac_address]))
         c.refresh_from_db()
         self.assertEqual(c.status, 'running')
 
