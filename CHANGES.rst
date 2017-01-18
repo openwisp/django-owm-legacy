@@ -1,10 +1,16 @@
 Changelog
 =========
 
-Version 0.3.0 [unreleased]
+Version 0.3.0 [2017-01-18]
 --------------------------
 
-WIP
+- `2db46c8 <https://github.com/openwisp/django-owm-legacy/commit/2db46c8>`_:
+  [requirements] set minimum `django-netjsonconfig
+  <https://github.com/openwisp/django-netjsonconfig>`_ version to 0.5.0
+- `f388d9c <https://github.com/openwisp/django-owm-legacy/commit/f388d9c>`_:
+  [views] use ``mac_address`` field instead of ``key``
+- `5a8b793 <https://github.com/openwisp/django-owm-legacy/commit/5a8b793>`_:
+  [views] added compatibility with ``openwisp2.config``
 
 Version 0.2.3 [2016-02-29]
 --------------------------
