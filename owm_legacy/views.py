@@ -1,6 +1,16 @@
+from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ImproperlyConfigured
 
-from django_netjsonconfig.models import Config
+if 'django_netjsonconfig' in settings.INSTALLED_APPS:
+    from django_netjsonconfig.models import Config
+elif 'openwisp2.config' in settings.INSTALLED_APPS:
+    from openwisp2.config.models import Config
+else:
+    raise ImproperlyConfigured('django-owm-legacy depends on django-netjsonconfig or '
+                               'openwisp2.config, but neither of the two is present '
+                               'in settings.INSTALLED_APPS')
+
 from django_netjsonconfig.controller.generics import BaseConfigView
 from django_netjsonconfig.utils import send_config, send_file, update_last_ip
 
