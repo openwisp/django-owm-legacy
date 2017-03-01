@@ -174,4 +174,4 @@ See `LICENSE <https://github.com/openwisp/django-owm-legacy/blob/master/LICENSE>
 Support
 -------
 
-Send questions to the `OpenWISP Mailing List <https://groups.google.com/d/forum/openwisp>`_.
+See `OpenWISP Support Channels <http://openwisp.org/support.html>`_.
