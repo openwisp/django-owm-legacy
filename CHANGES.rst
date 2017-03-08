@@ -1,10 +1,11 @@
 Changelog
 =========
 
-Version 0.3.1 [unreleased]
+Version 0.3.1 [2017-03-08]
 --------------------------
 
-WIP
+- `fb595bd <https://github.com/openwisp/django-owm-legacy/commit/fb595bd>`_:
+  [views] Added support for openwisp-controller
 
 Version 0.3.0 [2017-01-18]
 --------------------------
