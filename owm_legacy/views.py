@@ -4,11 +4,11 @@ from django.core.exceptions import ImproperlyConfigured
 
 if 'django_netjsonconfig' in settings.INSTALLED_APPS:
     from django_netjsonconfig.models import Config
-elif 'openwisp2.config' in settings.INSTALLED_APPS:  # pragma: nocover
-    from openwisp2.config.models import Config
+elif 'openwisp_controller.config' in settings.INSTALLED_APPS:  # pragma: nocover
+    from openwisp_controller.config.models import Config
 else:  # pragma: nocover
     raise ImproperlyConfigured('django-owm-legacy depends on django-netjsonconfig or '
-                               'openwisp2.config, but neither of the two is present '
+                               'openwisp_controller.config, but neither is present '
                                'in settings.INSTALLED_APPS')
 
 from django_netjsonconfig.controller.generics import BaseConfigView
