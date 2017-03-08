@@ -1,6 +1,10 @@
 from django.conf import settings
-from django.shortcuts import get_object_or_404
 from django.core.exceptions import ImproperlyConfigured
+from django.shortcuts import get_object_or_404
+
+from django_netjsonconfig.utils import send_config, send_file, update_last_ip
+
+from .utils import forbid_unallowed
 
 if 'django_netjsonconfig' in settings.INSTALLED_APPS:
     from django_netjsonconfig.models import Config
@@ -10,11 +14,6 @@ else:  # pragma: nocover
     raise ImproperlyConfigured('django-owm-legacy depends on django-netjsonconfig or '
                                'openwisp_controller.config, but neither is present '
                                'in settings.INSTALLED_APPS')
-
-from django_netjsonconfig.controller.generics import BaseConfigView
-from django_netjsonconfig.utils import send_config, send_file, update_last_ip
-
-from .utils import forbid_unallowed
 
 
 def get_config_md5(request, mac_address):

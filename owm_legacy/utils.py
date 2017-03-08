@@ -1,5 +1,5 @@
-import logging
 import ipaddress
+import logging
 
 from django.core.exceptions import PermissionDenied
 
