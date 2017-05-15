@@ -3,7 +3,7 @@ from time import sleep
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from django_netjsonconfig.models import Config
+from django_netjsonconfig.models import Config, Device
 from django_netjsonconfig.tests import CreateConfigMixin
 from owm_legacy.settings import ALLOWED_SUBNETS
 
@@ -13,6 +13,7 @@ class TestOwmLegacy(CreateConfigMixin, TestCase):
     tests for owm_legacy
     """
     config_model = Config
+    device_model = Device
 
     def test_get_config_md5(self):
         c = self._create_config()
@@ -28,7 +29,8 @@ class TestOwmLegacy(CreateConfigMixin, TestCase):
         self.assertIsNotNone(c.last_ip)
 
     def test_get_config(self):
-        c = self._create_config()
+        d = self._create_device(name='test')
+        c = self._create_config(device=d)
         response = self.client.get(reverse('owm:get_config', args=[c.mac_address]))
         self.assertEqual(response['Content-Disposition'], 'attachment; filename=test.tar.gz')
 
