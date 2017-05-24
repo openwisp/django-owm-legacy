@@ -1,10 +1,11 @@
 Changelog
 =========
 
-Version 0.4.0 [unreleased]
+Version 0.4.0 [2017-05-24]
 --------------------------
 
-WIP
+- `8078e07 <https://github.com/openwisp/django-owm-legacy/commit/8078e07>`_:
+  Upgraded to **django-netjsonconfig 0.6.0**
 
 Version 0.3.1 [2017-03-08]
 --------------------------
