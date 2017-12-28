@@ -6,11 +6,22 @@ python:
   - "3.4"
   - "2.7"
 
+env:
+  - DJANGO="django>=1.11,<1.12"
+  - DJANGO="django>=2.0,<2.1"
+
+matrix:
+  exclude:
+   - python: "2.7"
+     env: DJANGO="django>=2.0,<2.1"
+
 branches:
   only:
     - master
 
 install:
+  - pip install $DJANGO
+  - pip install https://github.com/openwisp/django-netjsonconfig/tarball/master
   - python setup.py -q develop
   - pip install -r requirements-test.txt
 

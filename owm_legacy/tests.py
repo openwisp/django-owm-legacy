@@ -1,6 +1,6 @@
 from time import sleep
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase
 
 from django_netjsonconfig.models import Config, Device

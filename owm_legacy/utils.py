@@ -14,9 +14,9 @@ def ip_allowed(address_string):
     according to ``settings.OWM_LEGACY_ALLOWED_SUBNETS``
     otherwise returns ``False``
     """
-    ip_address = ipaddress.ip_address(address_string)
+    ip_address = ipaddress.ip_address(address_string.encode().decode())
     for subnet_string in ALLOWED_SUBNETS:
-        network = ipaddress.ip_network(subnet_string)
+        network = ipaddress.ip_network(subnet_string.encode().decode())
         if ip_address in network:
             return True
     return False
