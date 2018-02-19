@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.4.1 [2018-02-19]
+--------------------------
+
+- upgraded to django 2.0 and django-netjsonconfig 0.8.0
+
 Version 0.4.0 [2017-05-24]
 --------------------------
 
