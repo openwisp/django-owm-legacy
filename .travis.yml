@@ -25,6 +25,7 @@ install:
   - pip install -r requirements-test.txt
 
 script:
+  - openwisp-utils-qa-checks --skip-checkmigrations
   - coverage run --source=owm_legacy runtests.py
 
 after_success:
