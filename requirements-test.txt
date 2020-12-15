@@ -1,2 +1,3 @@
 coveralls
-openwisp-utils[qa]>=0.4.1
+openwisp-utils[qa]~=0.7.0
+django-redis

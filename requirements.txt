@@ -1,1 +1,2 @@
-django-netjsonconfig>=0.8.0,<0.9.0
+openwisp-controller~=0.8
+django-model-utils<4.1.0,>=4.0.0

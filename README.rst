@@ -54,18 +54,39 @@ If you want to contribute, install your cloned fork:
 Setup (integrate in an existing django project)
 -----------------------------------------------
 
-Add ``django_netjsonconfig``, ``sortedm2m`` and ``owm_legacy`` to ``INSTALLED_APPS``:
+Add ``openwisp_controller`` and ``owm_legacy`` to ``INSTALLED_APPS`` as follow:
 
 .. code-block:: python
 
     INSTALLED_APPS = [
-        # other apps
-        'django_netjsonconfig',
+        # ...
+        'django.contrib.sites',
+        # allauth
+        'allauth',
+        'allauth.account',
+        # openwisp2 modules
+        'openwisp_controller.config',
+        'openwisp_controller.pki',
+        'openwisp_users',
+        'django.forms',
+        # other dependencies
         'sortedm2m',
         'reversion',
-        'owm_legacy'
+        'leaflet',
+        'flat_json_widget',
+        'owm_legacy',
+        'django.contrib.admin',
         # ...
     ]
+
+Other settings needed in ``settings.py``:
+
+.. code-block:: python
+
+    EXTENDED_APPS = ('django_x509',)
+
+    AUTH_USER_MODEL = 'openwisp_users.User'
+    SITE_ID = 1
 
 Your ``urls.py`` should look like the following:
 
@@ -80,8 +101,8 @@ Your ``urls.py`` should look like the following:
 
     urlpatterns = [
         url(r'^admin/', include(admin.site.urls)),
-        url(r'^', include('django_netjsonconfig.controller.urls', namespace='controller')),
-        url(r'^', include('owm_legacy.urls', namespace='owm')),
+        url(r'^', include('openwisp_controller.urls', namespace='controller')),
+        url(r'^', include('owm_legacy.urls', namespace='owm_legacy')),
     ]
 
     urlpatterns += staticfiles_urlpatterns()
@@ -94,6 +115,12 @@ Install sqlite:
 .. code-block:: shell
 
     sudo apt-get install sqlite3 libsqlite3-dev
+
+Launch Redis:
+
+.. code-block:: shell
+    
+    docker-compose up -d redis
 
 Install your forked repo:
 
