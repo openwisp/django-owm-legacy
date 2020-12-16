@@ -7,8 +7,8 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('owm_legacy.urls', namespace='owm_legacy')),
     url(r'', include('openwisp_controller.urls')),
+    url(r'^', include('owm_legacy.urls', namespace='owm_legacy')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
