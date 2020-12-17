@@ -37,7 +37,8 @@ install:
   - pip install -e .
 
 script:
-  - coverage run --source=owm_legacy runtests.py
+  - ./run-qa-checks
+  - coverage run -a --source=owm_legacy runtests.py
 
 after_success:
   coveralls

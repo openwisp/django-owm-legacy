@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+
 from openwisp_controller.config.models import Config
 from openwisp_controller.config.utils import (
     send_device_config,

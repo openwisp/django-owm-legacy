@@ -2,10 +2,10 @@ from time import sleep
 
 from django.test import TestCase
 from django.urls import reverse
+
 from openwisp_controller.config.models import Config, Device
 from openwisp_controller.config.tests import CreateConfigMixin
 from openwisp_users.tests.utils import TestOrganizationMixin
-
 from owm_legacy.settings import ALLOWED_SUBNETS
 
 
