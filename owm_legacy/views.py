@@ -26,5 +26,5 @@ def get_config(request, mac_address):
     """
     forbid_unallowed(request)
     config = get_object_or_404(Config, device__mac_address__iexact=mac_address)
-    config.set_status_modified(save=False)
+    config.set_status_applied()
     return send_device_config(config, request)

@@ -57,7 +57,7 @@ class TestOwmLegacy(CreateConfigMixin, TestOrganizationMixin, TestCase):
         c = self._create_config()
         self.client.get(reverse('owm_legacy:get_config', args=[c.mac_address]))
         c.refresh_from_db()
-        self.assertEqual(c.status, 'modified')
+        self.assertEqual(c.status, 'applied')
 
     def test_forbidden_ip(self):
         ALLOWED_SUBNETS.remove('127.0.0.1/32')
