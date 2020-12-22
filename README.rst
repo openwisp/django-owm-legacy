@@ -3,16 +3,30 @@ django-owm-legacy
 
 .. image:: https://travis-ci.org/openwisp/django-owm-legacy.svg
    :target: https://travis-ci.org/openwisp/django-owm-legacy
+   :alt: CI build status
 
 .. image:: https://coveralls.io/repos/openwisp/django-owm-legacy/badge.svg
   :target: https://coveralls.io/r/openwisp/django-owm-legacy
+  :alt: Test Coverage
 
 .. image:: https://requires.io/github/openwisp/django-owm-legacy/requirements.svg?branch=master
    :target: https://requires.io/github/openwisp/django-owm-legacy/requirements/?branch=master
    :alt: Requirements Status
 
+.. image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
+   :target: https://gitter.im/openwisp/general
+   :alt: Chat
+
 .. image:: https://badge.fury.io/py/django-owm-legacy.svg
    :target: http://badge.fury.io/py/django-owm-legacy
+
+.. image:: https://pepy.tech/badge/django-own-legacy
+   :target: https://pepy.tech/project/django-own-legacy
+   :alt: Downloads
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://pypi.org/project/black/
+   :alt: code style: black
 
 ------------
 
@@ -54,18 +68,45 @@ If you want to contribute, install your cloned fork:
 Setup (integrate in an existing django project)
 -----------------------------------------------
 
-Add ``django_netjsonconfig``, ``sortedm2m`` and ``owm_legacy`` to ``INSTALLED_APPS``:
+Add ``openwisp_controller`` and ``owm_legacy`` to ``INSTALLED_APPS`` as follow:
 
 .. code-block:: python
 
     INSTALLED_APPS = [
-        # other apps
-        'django_netjsonconfig',
+        # ...
+        'django.contrib.sites',
+        # allauth
+        'allauth',
+        'allauth.account',
+        'django_extensions',
+        # openwisp2 modules
+        'openwisp_controller.config',
+        'openwisp_controller.pki',
+        'openwisp_controller.geo',
+        'openwisp_controller.connection',
+        'openwisp_users',
+        # openwisp2 admin theme
+        # (must be loaded here)
+        'openwisp_utils.admin_theme',
+        'django.contrib.admin',
+        'django.forms',
+        # other dependencies
         'sortedm2m',
         'reversion',
-        'owm_legacy'
+        'leaflet',
+        'flat_json_widget',
+        'owm_legacy',
         # ...
     ]
+
+Other settings needed in ``settings.py``:
+
+.. code-block:: python
+
+    EXTENDED_APPS = ('django_x509', 'django_loci')
+
+    AUTH_USER_MODEL = 'openwisp_users.User'
+    SITE_ID = 1
 
 Your ``urls.py`` should look like the following:
 
@@ -80,8 +121,8 @@ Your ``urls.py`` should look like the following:
 
     urlpatterns = [
         url(r'^admin/', include(admin.site.urls)),
-        url(r'^', include('django_netjsonconfig.controller.urls', namespace='controller')),
-        url(r'^', include('owm_legacy.urls', namespace='owm')),
+        url(r'^', include('openwisp_controller.urls', namespace='controller')),
+        url(r'^', include('owm_legacy.urls', namespace='owm_legacy')),
     ]
 
     urlpatterns += staticfiles_urlpatterns()
@@ -93,7 +134,14 @@ Install sqlite:
 
 .. code-block:: shell
 
-    sudo apt-get install sqlite3 libsqlite3-dev
+    sudo apt install -y sqlite3 libsqlite3-dev openssl libssl-dev
+    sudo apt install -y gdal-bin libproj-dev libgeos-dev libspatialite-dev libsqlite3-mod-spatialite
+
+Launch Redis:
+
+.. code-block:: shell
+    
+    docker-compose up -d redis
 
 Install your forked repo:
 
@@ -116,6 +164,12 @@ Create database:
     cd tests/
     ./manage.py migrate
     ./manage.py createsuperuser
+
+Launch celery worker (for background jobs):
+
+.. code-block:: shell
+    
+    celery -A openwisp2 worker -l info
 
 Launch development server:
 
@@ -149,15 +203,7 @@ checksums and download configuration archives.
 Contributing
 ------------
 
-1. Announce your intentions in the `OpenWISP Mailing List <https://groups.google.com/d/forum/openwisp>`_
-2. Fork this repo and install it
-3. Follow `PEP8, Style Guide for Python Code`_
-4. Write code
-5. Write tests for your code
-6. Ensure all tests pass
-7. Ensure test coverage is not under 90%
-8. Document your changes
-9. Send pull request
+Please refer to the `OpenWISP contributing guidelines <http://openwisp.io/docs/developer/contributing.html>`_.
 
 .. _PEP8, Style Guide for Python Code: http://www.python.org/dev/peps/pep-0008/
 
