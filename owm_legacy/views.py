@@ -1,6 +1,6 @@
+import swapper
 from django.shortcuts import get_object_or_404
 
-from openwisp_controller.config.models import Config
 from openwisp_controller.config.utils import (
     send_device_config,
     send_file,
@@ -8,6 +8,9 @@ from openwisp_controller.config.utils import (
 )
 
 from .utils import forbid_unallowed
+
+Device = swapper.load_model('config', 'Device')
+Config = swapper.load_model('config', 'Config')
 
 
 def get_config_md5(request, mac_address):
