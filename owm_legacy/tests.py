@@ -39,6 +39,7 @@ class TestOwmLegacy(CreateConfigMixin, TestOrganizationMixin, TestCase):
         self.assertEqual(checksum1, checksum2)
         c.refresh_from_db()
         self.assertIsNotNone(c.device.last_ip)
+        self.assertEqual(c.device.last_ip, c.device.management_ip)
 
     def test_get_config(self):
         d = self._create_device(name='test')

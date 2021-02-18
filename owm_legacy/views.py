@@ -18,6 +18,9 @@ def get_config_md5(request, mac_address):
     """
     forbid_unallowed(request)
     config = get_object_or_404(Config, device__mac_address__iexact=mac_address)
+    # in OpenWISP 1, the last_ip field and the management_ip are the same
+    # because the config is downloaded via the management VPN
+    request.GET = {'management_ip': request.META.get('REMOTE_ADDR')}
     ip_updater.update_last_ip(config.device, request)
     return send_file(mac_address, config.checksum)
 
