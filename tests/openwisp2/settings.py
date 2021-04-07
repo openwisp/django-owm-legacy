@@ -1,5 +1,7 @@
 import os
+import sys
 
+TESTING = sys.argv[1:2] == ['test']
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
     'openwisp_controller.geo',
     'openwisp_controller.connection',
     'openwisp_users',
+    'openwisp_notifications',
     # openwisp2 admin theme
     # (must be loaded here)
     'openwisp_utils.admin_theme',
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'reversion',
     'leaflet',
     'flat_json_widget',
+    'channels',
     'owm_legacy',
 ]
 
@@ -78,12 +82,16 @@ USE_L10N = False
 STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True
 
-
-ASGI_APPLICATION = 'openwisp_controller.geo.channels.routing.channel_routing'
-CHANNEL_LAYERS = {
-    # in production you should use another channel layer backend
-    'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'},
-}
+ASGI_APPLICATION = 'openwisp2.routing.application'
+if not TESTING:
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {'hosts': ['redis://localhost/7']},
+        }
+    }
+else:
+    CHANNEL_LAYERS = {'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'}}
 
 TEMPLATES = [
     {
@@ -109,6 +117,7 @@ TEMPLATES = [
 
 FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CACHES = {
     'default': {
@@ -121,13 +130,14 @@ CACHES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
-CELERY_BROKER_URL = 'redis://localhost/1'
+if not TESTING:
+    CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://localhost/1')
+else:
+    CELERY_TASK_ALWAYS_EAGER = True
+    CELERY_TASK_EAGER_PROPAGATES = True
+    CELERY_BROKER_URL = 'memory://'
 
-# Workaround for stalled migrate command
-CELERY_BROKER_TRANSPORT_OPTIONS = {
-    'max_retries': 10,
-}
-
+DJANGO_LOCI_GEOCODE_STRICT_TEST = False
 
 # local settings must be imported before test runner
 # otherwise they'll be ignored

@@ -2,6 +2,7 @@ import swapper
 from django.shortcuts import get_object_or_404
 
 from openwisp_controller.config.controller.views import UpdateLastIpMixin
+from openwisp_controller.config.signals import checksum_requested
 from openwisp_controller.config.utils import send_device_config, send_file
 
 from .utils import forbid_unallowed
@@ -22,7 +23,11 @@ def get_config_md5(request, mac_address):
     # because the config is downloaded via the management VPN
     request.GET = {'management_ip': request.META.get('REMOTE_ADDR')}
     ip_updater.update_last_ip(config.device, request)
-    return send_file(mac_address, config.checksum)
+    # send checksum_requested signal
+    checksum_requested.send(
+        sender=config.device.__class__, instance=config.device, request=request
+    )
+    return send_file(mac_address, config.get_cached_checksum())
 
 
 def get_config(request, mac_address):

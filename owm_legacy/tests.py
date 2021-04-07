@@ -3,7 +3,9 @@ from time import sleep
 import swapper
 from django.test import TestCase
 from django.urls import reverse
+from openwisp_utils.tests import catch_signal
 
+from openwisp_controller.config.signals import checksum_requested
 from openwisp_controller.config.tests import CreateConfigMixin
 from openwisp_users.tests.utils import TestOrganizationMixin
 from owm_legacy.settings import ALLOWED_SUBNETS
@@ -31,7 +33,7 @@ class TestOwmLegacy(CreateConfigMixin, TestOrganizationMixin, TestCase):
         )
         self.assertEqual(len(response.content), 32)
         checksum1 = response.content
-        sleep(1)
+        sleep(0.5)
         response = self.client.get(
             reverse('owm_legacy:get_config_md5', args=[c.mac_address])
         )
@@ -40,6 +42,19 @@ class TestOwmLegacy(CreateConfigMixin, TestOrganizationMixin, TestCase):
         c.refresh_from_db()
         self.assertIsNotNone(c.device.last_ip)
         self.assertEqual(c.device.last_ip, c.device.management_ip)
+
+    def test_get_config_md5_checksum_signal(self):
+        c = self._create_config()
+        with catch_signal(checksum_requested) as handler:
+            response = self.client.get(
+                reverse('owm_legacy:get_config_md5', args=[c.mac_address])
+            )
+            handler.assert_called_once_with(
+                sender=Device,
+                signal=checksum_requested,
+                instance=c.device,
+                request=response.wsgi_request,
+            )
 
     def test_get_config(self):
         d = self._create_device(name='test')
