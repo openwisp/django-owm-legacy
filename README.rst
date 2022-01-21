@@ -85,6 +85,8 @@ Add ``openwisp_controller`` and ``owm_legacy`` to ``INSTALLED_APPS`` as follow:
         'openwisp_controller.geo',
         'openwisp_controller.connection',
         'openwisp_users',
+        'openwisp_notifications',
+        'openwisp_ipam',
         # openwisp2 admin theme
         # (must be loaded here)
         'openwisp_utils.admin_theme',
@@ -140,7 +142,7 @@ Install sqlite:
 Launch Redis:
 
 .. code-block:: shell
-    
+
     docker-compose up -d redis
 
 Install your forked repo:
@@ -168,7 +170,7 @@ Create database:
 Launch celery worker (for background jobs):
 
 .. code-block:: shell
-    
+
     celery -A openwisp2 worker -l info
 
 Launch development server:
