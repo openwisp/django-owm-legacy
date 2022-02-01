@@ -114,7 +114,7 @@ Your ``urls.py`` should look like the following:
 
 .. code-block:: python
 
-    from django.conf.urls import include, url
+    from django.urls import include, path
     from django.contrib import admin
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -122,9 +122,9 @@ Your ``urls.py`` should look like the following:
 
 
     urlpatterns = [
-        url(r'^admin/', include(admin.site.urls)),
-        url(r'^', include('openwisp_controller.urls', namespace='controller')),
-        url(r'^', include('owm_legacy.urls', namespace='owm_legacy')),
+        path('admin/', include(admin.site.urls)),
+        path('', include('openwisp_controller.urls', namespace='controller')),
+        path('', include('owm_legacy.urls', namespace='owm_legacy')),
     ]
 
     urlpatterns += staticfiles_urlpatterns()
