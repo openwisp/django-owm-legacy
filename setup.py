@@ -38,7 +38,7 @@ setup(
     version=get_version(),
     license='GPL3',
     author='Federico Capoano',
-    author_email='f.capoano@cineca.it',
+    author_email='support@openwisp.io',
     description='Legacy features of OpenWISP Manager reimplemented in django',
     long_description=open('README.rst').read(),
     url='https://github.com/openwisp/django-owm-legacy',
