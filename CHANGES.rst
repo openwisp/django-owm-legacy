@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.0 [2022-05-03]
+--------------------------
+
+- Upgraded to openwisp-controller 1.0.0
+- Upgraded to django 3.2 and django 4.0
+
 Version 0.5.0 [2021-02-05]
 --------------------------
 
