@@ -1,1 +1,1 @@
-openwisp-controller @ https://github.com/openwisp/openwisp-controller/tarball/master
+openwisp-controller~=1.0.0
