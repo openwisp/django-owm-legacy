@@ -1,8 +1,8 @@
 django-owm-legacy
 =================
 
-.. image:: https://travis-ci.org/openwisp/django-owm-legacy.svg
-   :target: https://travis-ci.org/openwisp/django-owm-legacy
+.. image:: https://github.com/openwisp/django-owm-legacy/workflows/Django%20OWM%20Legacy%20CI%20Build/badge.svg?branch=master
+   :target: https://github.com/openwisp/django-owm-legacy/actions?query=workflow%3A"Django%20OWM%20Legacy%20CI%20Build"
    :alt: CI build status
 
 .. image:: https://coveralls.io/repos/openwisp/django-owm-legacy/badge.svg
