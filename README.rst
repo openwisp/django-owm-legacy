@@ -9,9 +9,9 @@ django-owm-legacy
   :target: https://coveralls.io/r/openwisp/django-owm-legacy
   :alt: Test Coverage
 
-.. image:: https://requires.io/github/openwisp/django-owm-legacy/requirements.svg?branch=master
-   :target: https://requires.io/github/openwisp/django-owm-legacy/requirements/?branch=master
-   :alt: Requirements Status
+.. image:: https://img.shields.io/librariesio/release/github/openwisp/django-owm-legacy
+  :target: https://libraries.io/github/openwisp/django-owm-legacy#repository_dependencies
+  :alt: Dependency monitoring
 
 .. image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
    :target: https://gitter.im/openwisp/general
@@ -20,8 +20,8 @@ django-owm-legacy
 .. image:: https://badge.fury.io/py/django-owm-legacy.svg
    :target: http://badge.fury.io/py/django-owm-legacy
 
-.. image:: https://pepy.tech/badge/django-own-legacy
-   :target: https://pepy.tech/project/django-own-legacy
+.. image:: https://pepy.tech/badge/django-owm-legacy
+   :target: https://pepy.tech/project/django-owm-legacy
    :alt: Downloads
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
