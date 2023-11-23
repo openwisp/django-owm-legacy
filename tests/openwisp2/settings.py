@@ -10,7 +10,7 @@ ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
-        'ENGINE': 'openwisp_utils.db.backends.spatialite',
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
         'NAME': 'owm-legacy.db',
     }
 }
