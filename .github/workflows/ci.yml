@@ -48,25 +48,24 @@ jobs:
           libgeos-dev libspatialite-dev spatialite-bin \
           libsqlite3-mod-spatialite
 
-    - name: Upgrade python system packages
-      run: pip install -U pip wheel setuptools
-
-    - name: Installing module
+    - name: Install Dependencies
+      id: deps
       run: |
+        pip install -U pip wheel setuptools
         pip install -U -e .
         pip install -U ${{ matrix.django-version }}
-
-    - name: Install python dependencies
-      run: pip install -U -r requirements-test.txt
+        pip install -U -r requirements-test.txt
 
     - name: QA checks
       run: ./run-qa-checks
 
     - name: Tests
+      if: ${{ !cancelled() && steps.deps.conclusion == 'success' }}
       run: |
         coverage run --source=owm_legacy runtests.py
 
     - name: Upload Coverage
+      if: ${{ success() }}
       run: coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
