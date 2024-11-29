@@ -31,7 +31,7 @@ django-owm-legacy
 ----
 
 Legacy features of OpenWISP Manager reimplemented in django for `OpenWISP2
-<https://github.com/openwisp/ansible-openwisp2>`_.
+<https://openwisp.io/docs/stable/ansible/>`_.
 
 Install stable version from pypi
 --------------------------------
@@ -206,7 +206,7 @@ Contributing
 ------------
 
 Please refer to the `OpenWISP contributing guidelines
-<http://openwisp.io/docs/developer/contributing.html>`_.
+<https://openwisp.io/docs/stable/developer/contributing.html>`_.
 
 .. _pep8, style guide for python code: http://www.python.org/dev/peps/pep-0008/
 
@@ -225,4 +225,4 @@ See `LICENSE
 Support
 -------
 
-See `OpenWISP Support Channels <http://openwisp.org/support.html>`_.
+See `OpenWISP Support Channels <http://openwisp.org/support/>`_.
