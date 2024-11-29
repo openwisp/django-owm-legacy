@@ -15,9 +15,7 @@ Config = swapper.load_model('config', 'Config')
 
 
 class TestOwmLegacy(CreateConfigMixin, TestOrganizationMixin, TestCase):
-    """
-    tests for owm_legacy
-    """
+    """tests for owm_legacy"""
 
     config_model = Config
     device_model = Device

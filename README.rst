@@ -2,33 +2,33 @@ django-owm-legacy
 =================
 
 .. image:: https://github.com/openwisp/django-owm-legacy/workflows/Django%20OWM%20Legacy%20CI%20Build/badge.svg?branch=master
-   :target: https://github.com/openwisp/django-owm-legacy/actions?query=workflow%3A"Django%20OWM%20Legacy%20CI%20Build"
-   :alt: CI build status
+    :target: https://github.com/openwisp/django-owm-legacy/actions?query=workflow%3A"Django%20OWM%20Legacy%20CI%20Build"
+    :alt: CI build status
 
 .. image:: https://coveralls.io/repos/openwisp/django-owm-legacy/badge.svg
-  :target: https://coveralls.io/r/openwisp/django-owm-legacy
-  :alt: Test Coverage
+    :target: https://coveralls.io/r/openwisp/django-owm-legacy
+    :alt: Test Coverage
 
 .. image:: https://img.shields.io/librariesio/release/github/openwisp/django-owm-legacy
-  :target: https://libraries.io/github/openwisp/django-owm-legacy#repository_dependencies
-  :alt: Dependency monitoring
+    :target: https://libraries.io/github/openwisp/django-owm-legacy#repository_dependencies
+    :alt: Dependency monitoring
 
 .. image:: https://img.shields.io/gitter/room/nwjs/nw.js.svg
-   :target: https://gitter.im/openwisp/general
-   :alt: Chat
+    :target: https://gitter.im/openwisp/general
+    :alt: Chat
 
 .. image:: https://badge.fury.io/py/django-owm-legacy.svg
-   :target: http://badge.fury.io/py/django-owm-legacy
+    :target: http://badge.fury.io/py/django-owm-legacy
 
 .. image:: https://pepy.tech/badge/django-owm-legacy
-   :target: https://pepy.tech/project/django-owm-legacy
-   :alt: Downloads
+    :target: https://pepy.tech/project/django-owm-legacy
+    :alt: Downloads
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://pypi.org/project/black/
-   :alt: code style: black
+    :target: https://pypi.org/project/black/
+    :alt: code style: black
 
-------------
+----
 
 Legacy features of OpenWISP Manager reimplemented in django for `OpenWISP2
 <https://github.com/openwisp/ansible-openwisp2>`_.
@@ -68,36 +68,37 @@ If you want to contribute, install your cloned fork:
 Setup (integrate in an existing django project)
 -----------------------------------------------
 
-Add ``openwisp_controller`` and ``owm_legacy`` to ``INSTALLED_APPS`` as follow:
+Add ``openwisp_controller`` and ``owm_legacy`` to ``INSTALLED_APPS`` as
+follow:
 
 .. code-block:: python
 
     INSTALLED_APPS = [
         # ...
-        'django.contrib.sites',
+        "django.contrib.sites",
         # allauth
-        'allauth',
-        'allauth.account',
-        'django_extensions',
+        "allauth",
+        "allauth.account",
+        "django_extensions",
         # openwisp2 modules
-        'openwisp_controller.config',
-        'openwisp_controller.pki',
-        'openwisp_controller.geo',
-        'openwisp_controller.connection',
-        'openwisp_users',
-        'openwisp_notifications',
-        'openwisp_ipam',
+        "openwisp_controller.config",
+        "openwisp_controller.pki",
+        "openwisp_controller.geo",
+        "openwisp_controller.connection",
+        "openwisp_users",
+        "openwisp_notifications",
+        "openwisp_ipam",
         # openwisp2 admin theme
         # (must be loaded here)
-        'openwisp_utils.admin_theme',
-        'django.contrib.admin',
-        'django.forms',
+        "openwisp_utils.admin_theme",
+        "django.contrib.admin",
+        "django.forms",
         # other dependencies
-        'sortedm2m',
-        'reversion',
-        'leaflet',
-        'flat_json_widget',
-        'owm_legacy',
+        "sortedm2m",
+        "reversion",
+        "leaflet",
+        "flat_json_widget",
+        "owm_legacy",
         # ...
     ]
 
@@ -105,9 +106,9 @@ Other settings needed in ``settings.py``:
 
 .. code-block:: python
 
-    EXTENDED_APPS = ('django_x509', 'django_loci')
+    EXTENDED_APPS = ("django_x509", "django_loci")
 
-    AUTH_USER_MODEL = 'openwisp_users.User'
+    AUTH_USER_MODEL = "openwisp_users.User"
     SITE_ID = 1
 
 Your ``urls.py`` should look like the following:
@@ -122,9 +123,9 @@ Your ``urls.py`` should look like the following:
 
 
     urlpatterns = [
-        path('admin/', include(admin.site.urls)),
-        path('', include('openwisp_controller.urls', namespace='controller')),
-        path('', include('owm_legacy.urls', namespace='owm_legacy')),
+        path("admin/", include(admin.site.urls)),
+        path("", include("openwisp_controller.urls", namespace="controller")),
+        path("", include("owm_legacy.urls", namespace="owm_legacy")),
     ]
 
     urlpatterns += staticfiles_urlpatterns()
@@ -193,31 +194,33 @@ Settings
 ``OWM_LEGACY_ALLOWED_SUBNETS``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+--------------+------------------------------------------+
-| **type**:    | ``list``                                 |
-+--------------+------------------------------------------+
-| **default**: | ``['10.8.0.0/16', '127.0.0.1/32']``      |
-+--------------+------------------------------------------+
+============ ===================================
+**type**:    ``list``
+**default**: ``['10.8.0.0/16', '127.0.0.1/32']``
+============ ===================================
 
-List of strings representing ip networks allowed to retrieve
-checksums and download configuration archives.
+List of strings representing ip networks allowed to retrieve checksums and
+download configuration archives.
 
 Contributing
 ------------
 
-Please refer to the `OpenWISP contributing guidelines <http://openwisp.io/docs/developer/contributing.html>`_.
+Please refer to the `OpenWISP contributing guidelines
+<http://openwisp.io/docs/developer/contributing.html>`_.
 
-.. _PEP8, Style Guide for Python Code: http://www.python.org/dev/peps/pep-0008/
+.. _pep8, style guide for python code: http://www.python.org/dev/peps/pep-0008/
 
 Changelog
 ---------
 
-See `CHANGES <https://github.com/openwisp/django-owm-legacy/blob/master/CHANGES.rst>`_.
+See `CHANGES
+<https://github.com/openwisp/django-owm-legacy/blob/master/CHANGES.rst>`_.
 
 License
 -------
 
-See `LICENSE <https://github.com/openwisp/django-owm-legacy/blob/master/LICENSE>`_.
+See `LICENSE
+<https://github.com/openwisp/django-owm-legacy/blob/master/LICENSE>`_.
 
 Support
 -------

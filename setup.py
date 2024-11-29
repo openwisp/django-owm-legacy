@@ -8,9 +8,7 @@ from owm_legacy import get_version
 
 
 def get_install_requires():
-    """
-    parse requirements.txt, ignore links, exclude comments
-    """
+    """parse requirements.txt, ignore links, exclude comments"""
     requirements = []
     for line in open('requirements.txt').readlines():
         # skip to next iteration if comment or empty line
@@ -50,7 +48,7 @@ setup(
     zip_safe=False,
     install_requires=get_install_requires(),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable ',
         'Environment :: Web Environment',
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',

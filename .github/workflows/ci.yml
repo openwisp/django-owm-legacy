@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     name: Python==${{ matrix.python-version }} | ${{ matrix.django-version }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     services:
       redis:
@@ -25,11 +25,11 @@ jobs:
       fail-fast: false
       matrix:
         python-version:
-          - 3.8
-          - 3.9
+          - "3.9"
+          - "3.10"
         django-version:
           - django~=3.2.0
-          - django~=4.0.0
+          - django~=4.2.0
 
     steps:
     - uses: actions/checkout@v2
@@ -53,8 +53,8 @@ jobs:
       run: |
         pip install -U pip wheel setuptools
         pip install -U -e .
-        pip install -U ${{ matrix.django-version }}
         pip install -U -r requirements-test.txt
+        pip install -U ${{ matrix.django-version }}
 
     - name: QA checks
       run: ./run-qa-checks

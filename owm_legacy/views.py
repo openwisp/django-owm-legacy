@@ -14,9 +14,7 @@ ip_updater.model = Device
 
 
 def get_config_md5(request, mac_address):
-    """
-    returns md5 of configuration
-    """
+    """returns md5 of configuration"""
     forbid_unallowed(request)
     config = get_object_or_404(Config, device__mac_address__iexact=mac_address)
     # in OpenWISP 1, the last_ip field and the management_ip are the same
@@ -31,9 +29,7 @@ def get_config_md5(request, mac_address):
 
 
 def get_config(request, mac_address):
-    """
-    returns configuration tar.gz
-    """
+    """returns configuration tar.gz"""
     forbid_unallowed(request)
     config = get_object_or_404(Config, device__mac_address__iexact=mac_address)
     config.set_status_applied()
