@@ -7,8 +7,8 @@ from openwisp_controller.config.utils import send_device_config, send_file
 
 from .utils import forbid_unallowed
 
-Device = swapper.load_model('config', 'Device')
-Config = swapper.load_model('config', 'Config')
+Device = swapper.load_model("config", "Device")
+Config = swapper.load_model("config", "Config")
 ip_updater = UpdateLastIpMixin()
 ip_updater.model = Device
 
@@ -19,7 +19,7 @@ def get_config_md5(request, mac_address):
     config = get_object_or_404(Config, device__mac_address__iexact=mac_address)
     # in OpenWISP 1, the last_ip field and the management_ip are the same
     # because the config is downloaded via the management VPN
-    request.GET = {'management_ip': request.META.get('REMOTE_ADDR')}
+    request.GET = {"management_ip": request.META.get("REMOTE_ADDR")}
     ip_updater.update_last_ip(config.device, request)
     # send checksum_requested signal
     checksum_requested.send(

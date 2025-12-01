@@ -6,9 +6,9 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('openwisp_controller.urls')),
-    path('', include('owm_legacy.urls', namespace='owm_legacy')),
+    path("admin/", admin.site.urls),
+    path("", include("openwisp_controller.urls")),
+    path("", include("owm_legacy.urls", namespace="owm_legacy")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

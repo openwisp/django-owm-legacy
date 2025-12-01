@@ -24,6 +24,6 @@ def ip_allowed(address_string):
 
 def forbid_unallowed(request):
     """raises ``PermissionDenied`` if remote address is not allowed"""
-    if not ip_allowed(request.META.get('REMOTE_ADDR')):
-        logger.warning('PermissionDenied', extra={'request': request, 'stack': True})
+    if not ip_allowed(request.META.get("REMOTE_ADDR")):
+        logger.warning("PermissionDenied", extra={"request": request, "stack": True})
         raise PermissionDenied
