@@ -6,7 +6,7 @@ from openwisp_controller.routing import get_routes
 
 application = ProtocolTypeRouter(
     {
-        'websocket': AllowedHostsOriginValidator(
+        "websocket": AllowedHostsOriginValidator(
             AuthMiddlewareStack(URLRouter(get_routes()))
         )
     }
