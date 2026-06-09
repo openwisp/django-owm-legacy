@@ -85,11 +85,12 @@ STATIC_URL = "/static/"
 CORS_ORIGIN_ALLOW_ALL = True
 
 ASGI_APPLICATION = "openwisp2.routing.application"
+
 if not TESTING:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {"hosts": ["redis://localhost/7"]},
+            "CONFIG": {"hosts": ["redis://localhost/3"]},
         }
     }
 else:
@@ -121,21 +122,41 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost/0",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    }
-}
-
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
 
 if not TESTING:
-    CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost/1")
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://localhost/0",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        },
+        "sessions": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://localhost/1",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        },
+    }
+    SESSION_CACHE_ALIAS = "sessions"
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "owm-legacy",
+        },
+        "sessions": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "owm-legacy-sessions",
+        },
+    }
+    SESSION_CACHE_ALIAS = "sessions"
+
+if not TESTING:
+    CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost/2")
 else:
     CELERY_TASK_ALWAYS_EAGER = True
     CELERY_TASK_EAGER_PROPAGATES = True
